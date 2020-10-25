@@ -3,7 +3,7 @@ git:
   depth: false # Disable shallow fetch for sonarqube
 jdk: openjdk11
 
-script: ./gradlew check sonarqube -i -Dsonar.projectKey=vierbergenlars_plugin-updates-gradle-plugin -Dsonar.organization=vierbergenlars-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+script: ./gradlew check sonarqube -i -Dsonar.projectKey=vierbergenlars_dev-conventions-gradle-plugin -Dsonar.organization=vierbergenlars-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 
 deploy:
   skip_cleanup: true
