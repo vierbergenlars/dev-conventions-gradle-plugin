@@ -6,14 +6,16 @@ import org.gradle.api.Project
 class JacocoSonarqubeConvention implements Convention {
     @Override
     void apply(Project project) {
-        project.plugins.withId("jacoco") {
-            project.plugins.withId("org.sonarqube") {
-                project.tasks.named("sonarqube").configure {
-                    dependsOn("jacocoTestReport", "check")
-                }
-                project.tasks.named("jacocoTestReport").configure {
-                    reports {
-                        xml.enabled = true
+        project.plugins.withId("java") {
+            project.plugins.withId("jacoco") {
+                project.plugins.withId("org.sonarqube") {
+                    project.tasks.named("sonarqube").configure {
+                        dependsOn("jacocoTestReport", "check")
+                    }
+                    project.tasks.named("jacocoTestReport").configure {
+                        reports {
+                            xml.enabled = true
+                        }
                     }
                 }
             }

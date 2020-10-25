@@ -1,0 +1,7 @@
+plugins {
+    id "jacoco"
+    id "org.sonarqube" version "3.0"
+    id "be.vbgn.dev-conventions"
+}
+
+assert !tasks.sonarqube.getDependsOn().contains("jacocoTestReport")

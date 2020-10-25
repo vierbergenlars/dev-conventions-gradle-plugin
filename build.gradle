@@ -1,3 +1,5 @@
+import java.util.stream.Collectors
+
 plugins {
     id 'groovy'
     id 'java-gradle-plugin'
@@ -7,6 +9,7 @@ plugins {
     id 'org.sonarqube' version '3.0'
     id "com.gradle.plugin-publish" version "0.12.0"
     id "com.github.harbby.gradle.serviceloader" version "1.1.5"
+    id 'nebula.integtest' version '7.0.9'
 }
 
 group 'be.vbgn.gradle'
@@ -15,6 +18,17 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()
+}
+
+configurations {
+    integTestAdditionalPlugins
+}
+
+dependencies {
+    integTestAdditionalPlugins project(":fake-ci-detect")
+    integTestImplementation "junit:junit:4.13.1"
+    integTestImplementation "commons-io:commons-io:2.8.0"
 }
 
 gradlePlugin {
@@ -24,16 +38,24 @@ gradlePlugin {
             implementationClass = 'be.vbgn.gradle.devConventions.DevConventionsPlugin'
         }
         devOpinions {
-            id = 'be.vbgn.dev-conventions.opinions'
+            id = 'be.vbgn.dev-conventions.opinion'
             implementationClass = 'be.vbgn.gradle.devConventions.DevOpinionsPlugin'
         }
+    }
+    testSourceSets(sourceSets.integTest)
+}
+
+integrationTest {
+    dependsOn(configurations.integTestAdditionalPlugins)
+    doFirst {
+        systemProperty("be.vbgn.gradle.devConventions.integration.additionalPluginClasspath", configurations.integTestAdditionalPlugins.files.stream().map({ f -> f.path }).collect(Collectors.joining(":")))
     }
 }
 
 pluginBundle {
     vcsUrl = "https://github.com/vierbergenlars/dev-conventions-gradle-plugin"
     website = vcsUrl
-    description = "A gradle plugin that automatically applies development conventions and/or opinions"
+    description = "A gradle plugin that automatically applies development conventions and/or opinions based on the plugins that are applied to your project"
     tags = ["convention", "integration"]
     plugins {
         devConventions {
@@ -45,6 +67,7 @@ pluginBundle {
     }
 }
 
+
 reckon {
     scopeFromProp()
     snapshotFromProp()
@@ -54,3 +77,4 @@ serviceLoader {
     serviceInterface "be.vbgn.gradle.devConventions.conventions.Convention"
     serviceInterface "be.vbgn.gradle.devConventions.conventions.Opinion"
 }
+classes.finalizedBy("serviceLoaderBuild")

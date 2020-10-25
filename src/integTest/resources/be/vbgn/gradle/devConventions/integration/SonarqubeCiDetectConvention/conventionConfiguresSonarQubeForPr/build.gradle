@@ -1,0 +1,14 @@
+plugins {
+    id "org.sonarqube" version "3.0"
+    id "be.vbgn.dev-conventions.integration.fake-ci-detect"
+    id "be.vbgn.ci-detect"
+    id "be.vbgn.dev-conventions"
+}
+
+sonarqube {
+    properties {
+        assert properties.get("sonar.pullrequest.branch") == "testbranch123"
+        assert properties.get("sonar.pullrequest.key") == "12"
+        assert properties.get("sonar.pullrequest.target") == "main123"
+    }
+}

@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ServiceLoader;
+import org.gradle.api.logging.Logger;
+import org.gradle.api.logging.Logging;
 
 final class ConventionLoader<T> {
-
 
     /**
      * Initialization on demand holder
@@ -22,6 +23,8 @@ final class ConventionLoader<T> {
         private static final ConventionLoader<Opinion> OPINION_INSTANCE = new ConventionLoader<>(Opinion.class);
     }
 
+    private static final Logger LOGGER = Logging.getLogger(ConventionLoader.class);
+
     private final List<T> installedConventions;
 
     private ConventionLoader(Class<T> type) {
@@ -30,6 +33,8 @@ final class ConventionLoader<T> {
         for (T convention : conventionLoader) {
             conventions.add(convention);
         }
+
+        LOGGER.debug("Loaded {} conventions of type {}", conventions.size(), type);
 
         installedConventions = Collections.unmodifiableList(conventions);
     }

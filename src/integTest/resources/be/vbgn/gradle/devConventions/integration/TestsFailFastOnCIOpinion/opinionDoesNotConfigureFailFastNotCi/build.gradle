@@ -1,0 +1,11 @@
+plugins {
+    id "java"
+    id "be.vbgn.dev-conventions.integration.fake-ci-detect"
+    id "be.vbgn.ci-detect"
+    id "be.vbgn.dev-conventions.opinion"
+}
+
+assert test.failFast == false
+
+
+

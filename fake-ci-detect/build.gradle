@@ -1,0 +1,23 @@
+plugins {
+    id "java-library"
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    gradlePluginPortal()
+}
+
+dependencies {
+    compileOnly gradleApi()
+    implementation "be.vbgn.gradle:ci-detect-plugin:0.5.0"
+}
+
+gradlePlugin {
+    plugins {
+        fakeCiDetect {
+            id = 'be.vbgn.dev-conventions.integration.fake-ci-detect'
+            implementationClass = 'be.vbgn.gradle.devConventions.fakeci.FakeCIPlugin'
+        }
+    }
+}

@@ -1,2 +1,4 @@
 rootProject.name = 'dev-conventions-plugin'
 
+include ':fake-ci-detect'
+

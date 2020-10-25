@@ -1,0 +1,10 @@
+plugins {
+    id "jacoco"
+    id "java"
+    id "org.sonarqube" version "3.0"
+    id "be.vbgn.dev-conventions"
+}
+
+assert jacocoTestReport.reports.xml.enabled == true
+
+assert tasks.sonarqube.getDependsOn().contains("jacocoTestReport")

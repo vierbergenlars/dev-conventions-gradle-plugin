@@ -1,0 +1,9 @@
+plugins {
+    id "java"
+    id "be.vbgn.dev-conventions.integration.fake-ci-detect"
+    id "be.vbgn.ci-detect"
+    id "be.vbgn.dev-conventions"
+}
+
+assert test.failFast == false
+

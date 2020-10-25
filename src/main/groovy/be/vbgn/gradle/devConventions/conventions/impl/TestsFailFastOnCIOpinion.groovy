@@ -8,8 +8,10 @@ class TestsFailFastOnCIOpinion implements Opinion {
     @Override
     void apply(Project project) {
         project.plugins.withId("be.vbgn.ci-detect") {
-            project.tasks.withType(Test.class).configureEach {
-                failFast = project.ci.isCi()
+            if (project.ci.isCi()) {
+                project.tasks.withType(Test.class).configureEach {
+                    failFast = true
+                }
             }
         }
     }

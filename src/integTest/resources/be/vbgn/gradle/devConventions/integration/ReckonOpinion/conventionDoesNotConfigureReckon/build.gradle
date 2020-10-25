@@ -1,0 +1,8 @@
+plugins {
+    id "org.ajoberstar.reckon" version "0.13.0"
+    id "be.vbgn.dev-conventions"
+}
+
+// Reckon is not configured here and is not configured by the plugin
+// Reckon will throw an exception when it is not configured
+println(project.version)

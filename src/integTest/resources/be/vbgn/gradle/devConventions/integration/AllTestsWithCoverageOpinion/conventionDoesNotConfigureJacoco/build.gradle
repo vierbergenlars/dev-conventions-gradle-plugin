@@ -1,0 +1,16 @@
+plugins {
+    id "jacoco"
+    id "java"
+    id "be.vbgn.dev-conventions.opinion"
+}
+
+task integrationTest(type: Test) {
+
+}
+
+jacocoTestReport {
+    doLast {
+        assert jacocoTestReport.executionData.size() == 1
+    }
+}
+
