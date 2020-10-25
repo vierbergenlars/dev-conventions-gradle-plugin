@@ -7,4 +7,10 @@ plugins {
 
 assert jacocoTestReport.reports.xml.enabled == true
 
-assert tasks.sonarqube.getDependsOn().contains("jacocoTestReport")
+gradle.taskGraph.whenReady { graph ->
+    assert graph.hasTask(jacocoTestReport)
+}
+
+tasks.sonarqube {
+    onlyIf({ false })
+}

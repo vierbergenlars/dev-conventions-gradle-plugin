@@ -4,4 +4,6 @@ plugins {
     id "be.vbgn.dev-conventions"
 }
 
-assert !tasks.sonarqube.getDependsOn().contains("jacocoTestReport")
+tasks.sonarqube {
+    onlyIf({ false })
+}

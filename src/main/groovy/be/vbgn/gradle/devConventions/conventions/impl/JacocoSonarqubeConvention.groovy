@@ -10,7 +10,7 @@ class JacocoSonarqubeConvention implements Convention {
         project.plugins.withId("jacoco") {
             project.plugins.withId("org.sonarqube") {
                 project.tasks.named("sonarqube").configure {
-                    dependsOn(project.tasks.withType(JacocoReport.class), "check")
+                    dependsOn(project.tasks.withType(JacocoReport.class))
                 }
                 project.tasks.withType(JacocoReport.class).configureEach {
                     reports {
