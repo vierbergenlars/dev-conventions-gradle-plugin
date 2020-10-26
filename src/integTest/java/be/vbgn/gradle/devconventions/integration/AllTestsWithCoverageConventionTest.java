@@ -1,4 +1,4 @@
-package be.vbgn.gradle.devConventions.integration;
+package be.vbgn.gradle.devconventions.integration;
 
 import java.io.IOException;
 import org.junit.Test;

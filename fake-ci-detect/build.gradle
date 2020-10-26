@@ -17,7 +17,7 @@ gradlePlugin {
     plugins {
         fakeCiDetect {
             id = 'be.vbgn.dev-conventions.integration.fake-ci-detect'
-            implementationClass = 'be.vbgn.gradle.devConventions.fakeci.FakeCIPlugin'
+            implementationClass = 'be.vbgn.gradle.devconventions.fakeci.FakeCIPlugin'
         }
     }
 }

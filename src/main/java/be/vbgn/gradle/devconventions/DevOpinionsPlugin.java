@@ -1,6 +1,6 @@
-package be.vbgn.gradle.devConventions;
+package be.vbgn.gradle.devconventions;
 
-import be.vbgn.gradle.devConventions.conventions.Opinion;
+import be.vbgn.gradle.devconventions.conventions.Opinion;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 

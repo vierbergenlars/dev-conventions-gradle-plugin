@@ -35,11 +35,11 @@ gradlePlugin {
     plugins {
         devConventions {
             id = 'be.vbgn.dev-conventions'
-            implementationClass = 'be.vbgn.gradle.devConventions.DevConventionsPlugin'
+            implementationClass = 'be.vbgn.gradle.devconventions.DevConventionsPlugin'
         }
         devOpinions {
             id = 'be.vbgn.dev-conventions.opinion'
-            implementationClass = 'be.vbgn.gradle.devConventions.DevOpinionsPlugin'
+            implementationClass = 'be.vbgn.gradle.devconventions.DevOpinionsPlugin'
         }
     }
     testSourceSets(sourceSets.integTest)
@@ -48,7 +48,7 @@ gradlePlugin {
 integrationTest {
     dependsOn(configurations.integTestAdditionalPlugins)
     doFirst {
-        systemProperty("be.vbgn.gradle.devConventions.integration.additionalPluginClasspath", configurations.integTestAdditionalPlugins.files.stream().map({ f -> f.path }).collect(Collectors.joining(":")))
+        systemProperty("be.vbgn.gradle.devconventions.integration.additionalPluginClasspath", configurations.integTestAdditionalPlugins.files.stream().map({ f -> f.path }).collect(Collectors.joining(":")))
     }
 }
 
@@ -74,7 +74,7 @@ reckon {
 }
 
 serviceLoader {
-    serviceInterface "be.vbgn.gradle.devConventions.conventions.Convention"
-    serviceInterface "be.vbgn.gradle.devConventions.conventions.Opinion"
+    serviceInterface "be.vbgn.gradle.devconventions.conventions.Convention"
+    serviceInterface "be.vbgn.gradle.devconventions.conventions.Opinion"
 }
 classes.finalizedBy("serviceLoaderBuild")

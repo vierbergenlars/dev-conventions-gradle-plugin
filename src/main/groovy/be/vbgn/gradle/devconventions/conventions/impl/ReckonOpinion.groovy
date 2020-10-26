@@ -1,7 +1,7 @@
-package be.vbgn.gradle.devConventions.conventions.impl
+package be.vbgn.gradle.devconventions.conventions.impl
 
 
-import be.vbgn.gradle.devConventions.conventions.Opinion
+import be.vbgn.gradle.devconventions.conventions.Opinion
 import org.gradle.api.Project
 
 class ReckonOpinion implements Opinion {

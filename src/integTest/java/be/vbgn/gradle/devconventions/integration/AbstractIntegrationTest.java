@@ -1,4 +1,4 @@
-package be.vbgn.gradle.devConventions.integration;
+package be.vbgn.gradle.devconventions.integration;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,11 +46,7 @@ public abstract class AbstractIntegrationTest {
                 "5.4.1",
                 "5.3.1",
         };
-        String forceGradleVersion = System.getProperty("be.vbgn.gradle.devConventions.integration.useGradleVersion");
-        if (forceGradleVersion != null) {
-            gradleVersions = new String[]{forceGradleVersion};
-        }
-
+       
         List<Object[]> parameters = new ArrayList<>();
 
         for (String gradleVersion : gradleVersions) {
@@ -81,7 +77,7 @@ public abstract class AbstractIntegrationTest {
         List<File> pluginClasspath = new ArrayList<>(gradleRunner.getPluginClasspath());
 
         String additionalClassPaths = System
-                .getProperty("be.vbgn.gradle.devConventions.integration.additionalPluginClasspath");
+                .getProperty("be.vbgn.gradle.devconventions.integration.additionalPluginClasspath");
 
         String[] additionalClassPathsSplit = additionalClassPaths.split(":");
 
@@ -89,10 +85,7 @@ public abstract class AbstractIntegrationTest {
                 Collectors.toSet()));
 
         gradleRunner.withPluginClasspath(pluginClasspath);
-
-        if (System.getProperty("be.vbgn.gradle.buildaspects.integration.forceCurrentGradleVersion") == null) {
-            gradleRunner.withGradleVersion(gradleVersion);
-        }
+        gradleRunner.withGradleVersion(gradleVersion);
 
         return gradleRunner;
 

@@ -1,7 +1,7 @@
-package be.vbgn.gradle.devConventions;
+package be.vbgn.gradle.devconventions;
 
-import be.vbgn.gradle.devConventions.conventions.Convention;
-import be.vbgn.gradle.devConventions.conventions.Opinion;
+import be.vbgn.gradle.devconventions.conventions.Convention;
+import be.vbgn.gradle.devconventions.conventions.Opinion;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

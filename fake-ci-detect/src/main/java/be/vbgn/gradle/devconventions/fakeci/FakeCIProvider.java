@@ -1,4 +1,4 @@
-package be.vbgn.gradle.devConventions.fakeci;
+package be.vbgn.gradle.devconventions.fakeci;
 
 import be.vbgn.gradle.cidetect.CiInformation;
 import be.vbgn.gradle.cidetect.provider.CiInformationProvider;

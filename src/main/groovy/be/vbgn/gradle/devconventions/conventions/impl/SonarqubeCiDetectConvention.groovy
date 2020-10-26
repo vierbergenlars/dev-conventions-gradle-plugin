@@ -1,6 +1,6 @@
-package be.vbgn.gradle.devConventions.conventions.impl
+package be.vbgn.gradle.devconventions.conventions.impl
 
-import be.vbgn.gradle.devConventions.conventions.Convention
+import be.vbgn.gradle.devconventions.conventions.Convention
 import org.gradle.api.Project
 
 class SonarqubeCiDetectConvention implements Convention {
