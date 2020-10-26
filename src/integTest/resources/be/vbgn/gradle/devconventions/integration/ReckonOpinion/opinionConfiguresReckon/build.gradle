@@ -1,8 +1,18 @@
 plugins {
+    id "lifecycle-base"
     id "org.ajoberstar.reckon" version "0.13.0"
     id "be.vbgn.dev-conventions.opinion"
 }
 
-// Reckon is not configured here, but is configured by the plugin
+// Reckon is not configured in the build, but is configured by the plugin
 // If it was not configured, it would have thrown an exception that would have failed the build
 println(project.version)
+
+reckonTagCreate {
+    onlyIf({ false })
+}
+
+gradle.taskGraph.whenReady { graph ->
+    assert graph.hasTask(check)
+}
+

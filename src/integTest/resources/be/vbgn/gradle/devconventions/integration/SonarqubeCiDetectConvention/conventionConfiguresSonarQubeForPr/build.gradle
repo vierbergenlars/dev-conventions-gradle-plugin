@@ -5,10 +5,7 @@ plugins {
     id "be.vbgn.dev-conventions"
 }
 
-sonarqube {
-    properties {
-        assert properties.get("sonar.pullrequest.branch") == "testbranch123"
-        assert properties.get("sonar.pullrequest.key") == "12"
-        assert properties.get("sonar.pullrequest.target") == "main123"
-    }
-}
+println(tasks.sonarqube.properties)
+assert tasks.sonarqube.properties.get("sonar.pullrequest.branch") == "source123"
+assert tasks.sonarqube.properties.get("sonar.pullrequest.key") == "12"
+assert tasks.sonarqube.properties.get("sonar.pullrequest.base") == "main123"

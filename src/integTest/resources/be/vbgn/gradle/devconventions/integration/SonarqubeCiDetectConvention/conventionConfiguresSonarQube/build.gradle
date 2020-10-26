@@ -5,8 +5,5 @@ plugins {
     id "be.vbgn.dev-conventions"
 }
 
-sonarqube {
-    properties {
-        assert properties.get("sonar.branch.name") == "testbranch123"
-    }
-}
+println(tasks.sonarqube.properties)
+assert tasks.sonarqube.properties.get("sonar.branch.name") == "testbranch123"

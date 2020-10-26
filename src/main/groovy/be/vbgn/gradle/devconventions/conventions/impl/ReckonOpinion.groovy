@@ -13,7 +13,7 @@ class ReckonOpinion implements Opinion {
                 snapshotFromProp()
             }
 
-            project.plugins.withId("base") {
+            project.plugins.withId("lifecycle-base") {
                 project.tasks.named("reckonTagCreate").configure {
                     dependsOn("check")
                 }

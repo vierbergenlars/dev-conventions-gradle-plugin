@@ -15,8 +15,8 @@ public class SonarqubeCiDetectConventionTest extends AbstractIntegrationTest {
     @Test
     public void conventionConfiguresSonarQubeForPr() throws IOException {
         createGradleRunner(integrationTests.resolve("SonarqubeCiDetectConvention/conventionConfiguresSonarQubeForPr"))
-                .withArguments("-Dfakeci=true", "-Dfakeci.pr=12", "-Dfakeci.pr.target=testbranch123",
-                        "-Dfakeci.branch=main123")
+                .withArguments("-Dfakeci=true", "-Dfakeci.pr=12", "-Dfakeci.pr.target=main123",
+                        "-Dfakeci.branch=source123")
                 .build();
     }
 }

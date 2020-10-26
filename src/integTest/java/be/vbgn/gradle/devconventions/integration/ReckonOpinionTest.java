@@ -31,7 +31,9 @@ public class ReckonOpinionTest extends AbstractIntegrationTest {
 
     @Test
     public void opinionConfiguresReckon() throws IOException {
-        createGradleRunner(integrationTests.resolve("ReckonOpinion/opinionConfiguresReckon")).build();
+        createGradleRunner(integrationTests.resolve("ReckonOpinion/opinionConfiguresReckon"))
+                .withArguments("reckonTagCreate")
+                .build();
     }
 
     @Test
