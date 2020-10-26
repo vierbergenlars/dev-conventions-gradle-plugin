@@ -1,0 +1,16 @@
+plugins {
+    id "be.vbgn.dev-conventions.opinion"
+}
+
+task test(type: Test) {
+    testClassesDirs = files()
+}
+
+task additionalTest(type: Test) {
+    testClassesDirs = files()
+}
+
+gradle.taskGraph.whenReady { graph ->
+    assert !graph.hasTask(test)
+    assert !graph.hasTask(additionalTest)
+}

@@ -37,4 +37,5 @@ plugins {
 ### Opinions
 
  * The `org.ajoberstar.reckon` plugin: Is configured with `scopeFromProp()` and `snapshotFromProp()`. Before a tag can be created with `reckonTagCreate`, the `check` task must complete succesfully.
- * All `Test` tasks are configured in fail-fast mode when a CI environment is detected
+ * All `Test`-type tasks are configured in fail-fast mode when a CI environment is detected
+ * The `check` task depends on all tasks of type `Test`
