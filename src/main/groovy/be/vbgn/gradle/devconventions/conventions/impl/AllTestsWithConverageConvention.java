@@ -4,6 +4,7 @@ import be.vbgn.gradle.devconventions.conventions.Convention;
 import org.gradle.api.Project;
 import org.gradle.api.tasks.TaskCollection;
 import org.gradle.api.tasks.testing.Test;
+import org.gradle.language.base.plugins.LifecycleBasePlugin;
 import org.gradle.testing.jacoco.tasks.JacocoCoverageVerification;
 import org.gradle.testing.jacoco.tasks.JacocoReport;
 import org.gradle.util.GUtil;
@@ -22,12 +23,14 @@ public class AllTestsWithConverageConvention implements Convention {
                 }
                 String taskName = GUtil.toCamelCase(testTask.getName());
                 project.getTasks().create("jacoco" + taskName + "Report", JacocoReport.class, jacocoReport -> {
+                    jacocoReport.setGroup(LifecycleBasePlugin.VERIFICATION_GROUP);
                     jacocoReport.dependsOn(testTask);
                     jacocoReport.executionData(testTask);
                 });
                 project.getTasks()
                         .create("jacoco" + taskName + "CoverageVerification", JacocoCoverageVerification.class,
                                 coverageVerification -> {
+                                    coverageVerification.setGroup(LifecycleBasePlugin.VERIFICATION_GROUP);
                                     coverageVerification.dependsOn(testTask);
                                     coverageVerification.executionData(testTask);
                                 });
