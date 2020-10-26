@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.io.FileUtils;
 import org.gradle.testkit.runner.GradleRunner;
+import org.gradle.testkit.runner.internal.DefaultGradleRunner;
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
@@ -46,7 +47,7 @@ public abstract class AbstractIntegrationTest {
                 "5.4.1",
                 "5.3.1",
         };
-       
+
         List<Object[]> parameters = new ArrayList<>();
 
         for (String gradleVersion : gradleVersions) {
@@ -63,32 +64,35 @@ public abstract class AbstractIntegrationTest {
 
 
     protected GradleRunner createGradleRunner(Path projectFolder) throws IOException {
-
         FileUtils.copyDirectory(projectFolder.toFile(), testProjectDir.getRoot());
+
         GradleRunner gradleRunner = GradleRunner.create()
                 .withPluginClasspath()
                 // This clears all environment variables, including ones set by CI
                 // (Because we do some things with CI detection)
                 .withEnvironment(new HashMap<>())
-                .withArguments("--stacktrace", "--info")
                 .withProjectDir(testProjectDir.getRoot())
+                .withGradleVersion(gradleVersion)
                 .forwardOutput();
 
-        List<File> pluginClasspath = new ArrayList<>(gradleRunner.getPluginClasspath());
+        // Configure java commandline options so integration tests are run with coverage information
+        String[] myCommandLine = ProcessHandle.current().info().arguments().get();
+        List<String> agentOpts = Arrays.stream(myCommandLine)
+                .filter(arg -> arg.startsWith("-javaagent"))
+                .map(agent -> agent.replace("build/", System.getProperty("user.dir") + "/build/"))
+                .collect(Collectors.toList());
+        ((DefaultGradleRunner) gradleRunner).withJvmArguments(agentOpts);
 
+        // Add additional plugins to the classpath
+        List<File> pluginClasspath = new ArrayList<>(gradleRunner.getPluginClasspath());
         String additionalClassPaths = System
                 .getProperty("be.vbgn.gradle.devconventions.integration.additionalPluginClasspath");
-
         String[] additionalClassPathsSplit = additionalClassPaths.split(":");
-
         pluginClasspath.addAll(Arrays.stream(additionalClassPathsSplit).map(File::new).collect(
                 Collectors.toSet()));
-
         gradleRunner.withPluginClasspath(pluginClasspath);
-        gradleRunner.withGradleVersion(gradleVersion);
 
         return gradleRunner;
-
     }
 
 }
