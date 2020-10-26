@@ -2,11 +2,14 @@ package be.vbgn.gradle.devconventions.conventions.impl;
 
 import be.vbgn.gradle.devconventions.conventions.Convention;
 import org.gradle.api.Project;
+import org.gradle.api.plugins.JavaPluginConvention;
+import org.gradle.api.tasks.SourceSet;
 import org.gradle.api.tasks.TaskCollection;
 import org.gradle.api.tasks.testing.Test;
 import org.gradle.language.base.plugins.LifecycleBasePlugin;
 import org.gradle.testing.jacoco.tasks.JacocoCoverageVerification;
 import org.gradle.testing.jacoco.tasks.JacocoReport;
+import org.gradle.testing.jacoco.tasks.JacocoReportBase;
 import org.gradle.util.GUtil;
 
 public class AllTestsWithConverageConvention implements Convention {
@@ -23,19 +26,32 @@ public class AllTestsWithConverageConvention implements Convention {
                 }
                 String taskName = GUtil.toCamelCase(testTask.getName());
                 project.getTasks().create("jacoco" + taskName + "Report", JacocoReport.class, jacocoReport -> {
-                    jacocoReport.setGroup(LifecycleBasePlugin.VERIFICATION_GROUP);
-                    jacocoReport.dependsOn(testTask);
-                    jacocoReport.executionData(testTask);
+                    configureJacoco(project, testTask, jacocoReport);
                 });
                 project.getTasks()
                         .create("jacoco" + taskName + "CoverageVerification", JacocoCoverageVerification.class,
                                 coverageVerification -> {
-                                    coverageVerification.setGroup(LifecycleBasePlugin.VERIFICATION_GROUP);
-                                    coverageVerification.dependsOn(testTask);
-                                    coverageVerification.executionData(testTask);
+                                    configureJacoco(project, testTask, coverageVerification);
                                 });
             });
         });
+    }
 
+    private SourceSet findMainSourceSet(Project project) {
+        JavaPluginConvention convention = project.getConvention().findPlugin(JavaPluginConvention.class);
+        if (convention == null) {
+            return null;
+        }
+        return convention.getSourceSets().findByName("main");
+    }
+
+    private void configureJacoco(Project project, Test testTask, JacocoReportBase jacoco) {
+        jacoco.setGroup(LifecycleBasePlugin.VERIFICATION_GROUP);
+        jacoco.dependsOn(testTask);
+        jacoco.executionData(testTask);
+        SourceSet mainSourceSet = findMainSourceSet(project);
+        if (mainSourceSet != null) {
+            jacoco.sourceSets(mainSourceSet);
+        }
     }
 }
