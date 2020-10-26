@@ -32,9 +32,9 @@ plugins {
 
  * Integration between `jacoco` and `org.sonarqube` plugins: makes `sonarqube` task depend on all jacoco reports, and ensures that jacoco reports are generated in XML, for sonarqube to consume.
  * Integration between `org.sonarqube` and `be.vbgn.ci-detect` plugins: Configures sonarqube extension to have the right branch name or pull request information.
+ * The `jacoco` plugin: `jacoco*Report` and `jacoco*CoverageVerification` tasks are created for all tasks of type `Test`
 
 ### Opinions
 
  * The `org.ajoberstar.reckon` plugin: Is configured with `scopeFromProp()` and `snapshotFromProp()`. Before a tag can be created with `reckonTagCreate`, the `check` task must complete succesfully.
- * The `jacoco` plugin: `jacocoTestReport` and `jacocoTestCoverageVerification` tasks contain execution data of *all* Test tasks in the project.
  * All `Test` tasks are configured in fail-fast mode when a CI environment is detected

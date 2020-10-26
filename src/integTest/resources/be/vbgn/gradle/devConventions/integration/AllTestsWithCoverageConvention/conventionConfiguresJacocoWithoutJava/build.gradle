@@ -1,0 +1,27 @@
+plugins {
+    id "jacoco"
+    id "be.vbgn.dev-conventions"
+}
+
+task test(type: Test) {
+    testClassesDirs = files()
+
+}
+
+
+task integrationTest(type: Test) {
+    testClassesDirs = files()
+}
+
+
+jacocoTestReport {
+    doLast {
+        assert jacocoTestReport.executionData.size() == 1
+    }
+}
+
+jacocoIntegrationTestReport {
+    doLast {
+        assert jacocoIntegrationTestReport.executionData.size() == 1
+    }
+}
