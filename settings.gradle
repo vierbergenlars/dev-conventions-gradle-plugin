@@ -15,7 +15,7 @@ pluginManagement {
         resolutionStrategy {
             eachPlugin {
                 if (requested.id.id.startsWith("be.vbgn.dev-conventions")) {
-                    useVersion(requested.version + "-SNAPSHOT")
+                    useVersion("+")
                 }
             }
         }
