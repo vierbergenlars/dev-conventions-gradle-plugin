@@ -39,3 +39,4 @@ plugins {
  * The `org.ajoberstar.reckon` plugin: Is configured with `scopeFromProp()` and `snapshotFromProp()`. Before a tag can be created with `reckonTagCreate`, the `check` task must complete succesfully.
  * All `Test`-type tasks are configured in fail-fast mode when a CI environment is detected
  * The `check` task depends on all tasks of type `Test`
+ * The `maven-publish` and `be.vbgn.ci-detect` plugins, running on Github Actions and the `GITHUB_TOKEN` environment variable is available: Automatically configure a publication repository named `GithubPackages`.
