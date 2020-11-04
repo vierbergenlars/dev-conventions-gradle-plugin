@@ -1,9 +1,24 @@
 pluginManagement {
-    repositories {
-        maven {
-            url = "https://maven.pkg.github.com/vierbergenlars/dev-conventions-gradle-plugin"
+    if (System.getenv("GITHUB_ACTIONS")) {
+        // Configure a custom repository when running on github actions
+        repositories {
+            maven {
+                url = "https://maven.pkg.github.com/vierbergenlars/dev-conventions-gradle-plugin"
+                credentials {
+                    username = System.getenv("GITHUB_ACTOR")
+                    password = System.getenv("GITHUB_TOKEN")
+                }
+            }
+            gradlePluginPortal()
         }
-        gradlePluginPortal()
+        // Replace dev-conventions plugins with the snapshot version
+        resolutionStrategy {
+            eachPlugin {
+                if (requested.id.id.startsWith("be.vbgn.dev-conventions")) {
+                    useVersion(requested.version + "-SNAPSHOT")
+                }
+            }
+        }
     }
 }
 rootProject.name = 'dev-conventions-plugin'
