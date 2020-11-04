@@ -24,6 +24,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
         run: ./gradlew sonarqube -Dsonar.projectKey=vierbergenlars_dev-conventions-gradle-plugin -Dsonar.organization=vierbergenlars-github -Dsonar.host.url=https://sonarcloud.io
+      - name: Publish to Github Packages
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: ./gradlew publishAllPublicationsToGithubPackagesRepository --info
       - name: Publish plugin
         if: ${{ github.event_name == 'release' }}
         env:

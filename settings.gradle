@@ -1,3 +1,11 @@
+pluginManagement {
+    repositories {
+        maven {
+            url = "https://maven.pkg.github.com/vierbergenlars/dev-conventions-gradle-plugin"
+        }
+        gradlePluginPortal()
+    }
+}
 rootProject.name = 'dev-conventions-plugin'
 
 include ':fake-ci-detect'
