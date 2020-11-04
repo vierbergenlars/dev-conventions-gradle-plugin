@@ -18,12 +18,19 @@ jobs:
         with:
           java-version: 11
       - name: Tests
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: ./gradlew check
       - name: Upload analysis to sonarcloud
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
         run: ./gradlew sonarqube -Dsonar.projectKey=vierbergenlars_dev-conventions-gradle-plugin -Dsonar.organization=vierbergenlars-github -Dsonar.host.url=https://sonarcloud.io
+      - name: Publish to Github Packages
+        if: ${{ github.ref == 'refs/heads/master' }} # Only publish a snapshot from the master branch
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: ./gradlew publishAllPublicationsToGithubPackagesRepository --info
       - name: Publish plugin
         if: ${{ github.event_name == 'release' }}
         env:

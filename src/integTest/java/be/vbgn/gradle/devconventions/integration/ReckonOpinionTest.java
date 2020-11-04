@@ -19,8 +19,8 @@ public class ReckonOpinionTest extends AbstractIntegrationTest {
     private void executeProcess(String... commands) throws IOException, InterruptedException {
         ProcessBuilder processBuilder = new ProcessBuilder(commands)
                 .directory(testProjectDir.getRoot())
-                .redirectOutput(Redirect.INHERIT)
-                .redirectError(Redirect.INHERIT);
+                .redirectOutput(Redirect.DISCARD)
+                .redirectError(Redirect.DISCARD);
 
         Process process = processBuilder.start();
         while (process.isAlive()) {
