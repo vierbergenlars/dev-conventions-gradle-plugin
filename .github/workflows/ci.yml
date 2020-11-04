@@ -18,6 +18,8 @@ jobs:
         with:
           java-version: 11
       - name: Tests
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: ./gradlew check
       - name: Upload analysis to sonarcloud
         env:

@@ -1,5 +1,5 @@
 pluginManagement {
-    if (System.getenv("GITHUB_ACTIONS")) {
+    if (System.getenv("GITHUB_TOKEN")) {
         // Configure a custom repository when running on github actions
         repositories {
             maven {
