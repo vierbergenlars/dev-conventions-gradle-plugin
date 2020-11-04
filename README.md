@@ -1,6 +1,6 @@
 # Development conventions plugin
 
-[![Build Status](https://travis-ci.com/vierbergenlars/dev-conventions-gradle-plugin.svg?branch=master)](https://travis-ci.com/vierbergenlars/dev-conventions-gradle-plugin)
+[![CI](https://github.com/vierbergenlars/dev-conventions-gradle-plugin/workflows/CI/badge.svg)](https://github.com/vierbergenlars/dev-conventions-gradle-plugin/actions?query=workflow%3ACI+branch%3Amaster)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=vierbergenlars_dev-conventions-gradle-plugin&metric=alert_status)](https://sonarcloud.io/dashboard?id=vierbergenlars_dev-conventions-gradle-plugin)
 [![Gradle Plugin Portal](https://img.shields.io/maven-metadata/v/https/plugins.gradle.org/m2/be/vbgn/dev-conventions/be.vbgn.dev-conventions.gradle.plugin/maven-metadata.xml.svg?colorB=007ec6&label=be.vbgn.dev-conventions)](https://plugins.gradle.org/plugin/be.vbgn.dev-conventions)
 [![Gradle Plugin Portal](https://img.shields.io/maven-metadata/v/https/plugins.gradle.org/m2/be/vbgn/dev-conventions/opinion/be.vbgn.dev-conventions.opinion.gradle.plugin/maven-metadata.xml.svg?colorB=007ec6&label=be.vbgn.dev-conventions.opinion)](https://plugins.gradle.org/plugin/be.vbgn.dev-conventions.opinion)
