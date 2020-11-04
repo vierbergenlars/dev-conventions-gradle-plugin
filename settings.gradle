@@ -19,6 +19,7 @@ pluginManagement {
                     String[] versionParts = requested.version.split("\\.")
                     versionParts[1] = (versionParts[1].toInteger() + 1).toString()
                     useVersion(versionParts.join(".") + "-SNAPSHOT")
+                    settings.gradle.rootProject.logger.lifecycle("Adjusted plugin version: id '" + target.id.id + "' version '" + target.version + "'")
                 }
             }
         }
