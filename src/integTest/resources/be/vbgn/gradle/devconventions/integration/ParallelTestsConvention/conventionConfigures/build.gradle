@@ -1,0 +1,14 @@
+plugins {
+    id "base"
+    id "be.vbgn.dev-conventions"
+    id "java"
+}
+
+task additionalTest(type: Test) {
+    testClassesDirs = files()
+}
+
+afterEvaluate {
+    assert tasks.test.maxParallelForks == Runtime.getRuntime().availableProcessors()
+    assert tasks.additionalTest.maxParallelForks == Runtime.getRuntime().availableProcessors()
+}

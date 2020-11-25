@@ -33,6 +33,7 @@ plugins {
  * Integration between `jacoco` and `org.sonarqube` plugins: makes `sonarqube` task depend on all jacoco reports, and ensures that jacoco reports are generated in XML, for sonarqube to consume.
  * Integration between `org.sonarqube` and `be.vbgn.ci-detect` plugins: Configures sonarqube extension to have the right branch name or pull request information.
  * The `jacoco` plugin: `jacoco*Report` and `jacoco*CoverageVerification` tasks are created for all tasks of type `Test`
+ * All `Test` tasks: run tests in parallel, as many as there are processors in the machine
 
 ### Opinions
 
