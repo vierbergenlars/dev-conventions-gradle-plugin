@@ -33,6 +33,7 @@ configurations {
 }
 
 dependencies {
+    testImplementation 'junit:junit:4.13.1'
     integTestAdditionalPlugins project(":fake-ci-detect")
     integTestImplementation "junit:junit:4.13.1"
     integTestImplementation "commons-io:commons-io:2.8.0"

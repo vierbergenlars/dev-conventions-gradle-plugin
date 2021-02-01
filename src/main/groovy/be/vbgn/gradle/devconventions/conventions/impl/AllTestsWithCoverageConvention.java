@@ -12,7 +12,7 @@ import org.gradle.testing.jacoco.tasks.JacocoReport;
 import org.gradle.testing.jacoco.tasks.JacocoReportBase;
 import org.gradle.util.GUtil;
 
-public class AllTestsWithConverageConvention implements Convention {
+public class AllTestsWithCoverageConvention implements Convention {
 
     @Override
     public void apply(Project project) {
