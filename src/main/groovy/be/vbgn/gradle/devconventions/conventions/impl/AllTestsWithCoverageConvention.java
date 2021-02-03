@@ -12,7 +12,7 @@ import org.gradle.testing.jacoco.tasks.JacocoReport;
 import org.gradle.testing.jacoco.tasks.JacocoReportBase;
 import org.gradle.util.GUtil;
 
-public class AllTestsWithConverageConvention implements Convention {
+public class AllTestsWithCoverageConvention implements Convention {
 
     @Override
     public void apply(Project project) {
@@ -26,14 +26,11 @@ public class AllTestsWithConverageConvention implements Convention {
                 }
 
                 String taskName = GUtil.toCamelCase(testTask.getName());
-                project.getTasks().create("jacoco" + taskName + "Report", JacocoReport.class, jacocoReport -> {
-                    configureJacoco(project, testTask, jacocoReport);
-                });
+                project.getTasks().create("jacoco" + taskName + "Report", JacocoReport.class,
+                        jacocoReport -> configureJacoco(project, testTask, jacocoReport));
                 project.getTasks()
                         .create("jacoco" + taskName + "CoverageVerification", JacocoCoverageVerification.class,
-                                coverageVerification -> {
-                                    configureJacoco(project, testTask, coverageVerification);
-                                });
+                                coverageVerification -> configureJacoco(project, testTask, coverageVerification));
             });
         });
     }
