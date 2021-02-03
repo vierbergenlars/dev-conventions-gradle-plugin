@@ -26,14 +26,11 @@ public class AllTestsWithCoverageConvention implements Convention {
                 }
 
                 String taskName = GUtil.toCamelCase(testTask.getName());
-                project.getTasks().create("jacoco" + taskName + "Report", JacocoReport.class, jacocoReport -> {
-                    configureJacoco(project, testTask, jacocoReport);
-                });
+                project.getTasks().create("jacoco" + taskName + "Report", JacocoReport.class,
+                        jacocoReport -> configureJacoco(project, testTask, jacocoReport));
                 project.getTasks()
                         .create("jacoco" + taskName + "CoverageVerification", JacocoCoverageVerification.class,
-                                coverageVerification -> {
-                                    configureJacoco(project, testTask, coverageVerification);
-                                });
+                                coverageVerification -> configureJacoco(project, testTask, coverageVerification));
             });
         });
     }
