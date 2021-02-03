@@ -8,7 +8,7 @@ import org.gradle.api.logging.Logging;
 
 public class DevConventionsPlugin implements Plugin<Project> {
 
-    private static final Logger LOGGER = Logging.getLogger(DevOpinionsPlugin.class);
+    private static final Logger LOGGER = Logging.getLogger(DevConventionsPlugin.class);
 
     @Override
     public void apply(Project project) {
