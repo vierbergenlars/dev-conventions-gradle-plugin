@@ -1,5 +1,5 @@
-name-template: $NEXT_PATCH_VERSION
-tag-template: $NEXT_PATCH_VERSION
+name-template: $RESOLVED_VERSION
+tag-template: v$RESOLVED_VERSION
 change-template: "* $TITLE (#$NUMBER)"
 template: $CHANGES
 
@@ -13,3 +13,9 @@ categories:
 exclude-labels:
     - chore
     - dependencies
+
+version-resolver:
+    minor:
+        labels:
+            - enhancement
+    default: patch
