@@ -38,7 +38,12 @@ plugins {
 * Integration between `org.sonarqube` and `be.vbgn.ci-detect` plugins: Configures sonarqube extension to have the right
   branch name or pull request information.
 * The `jacoco` plugin: `jacoco*Report` and `jacoco*CoverageVerification` tasks are created for all tasks of type `Test`
-* All `Test` tasks: run tests in parallel, as many as there are processors in the machine
+* All `Test` tasks: run tests in parallel, as many as there are processors in the machine.
+  * The number of parallel forks is configurable with
+    the `be.vbgn.dev-conventions.ParallelTestsConvention.max-parallel-forks` property.
+  * When the `be.vbgn.ci-detect` plugin is applied and it detects that it is not running on a CI system, tests are run
+    in parallel with half of the available processors. This is done to avoid bogging down a developer's machine too
+    much.
 
 ### Opinions
 
