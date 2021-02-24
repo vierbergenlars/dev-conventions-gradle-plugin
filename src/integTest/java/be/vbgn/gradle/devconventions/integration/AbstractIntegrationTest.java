@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,6 +38,7 @@ public abstract class AbstractIntegrationTest {
     @Parameters(name = "Gradle v{0}")
     public static Collection<Object[]> testData() {
         String[] gradleVersions = new String[]{
+                "6.8.3",
                 "6.7.1",
                 "6.6.1",
                 "6.5.1",
@@ -56,6 +58,9 @@ public abstract class AbstractIntegrationTest {
         for (String gradleVersion : gradleVersions) {
             parameters.add(new Object[]{gradleVersion});
         }
+
+        // Shuffle versions so not all parallel tests are in contention for a daemon of the same version
+        Collections.shuffle(parameters);
         return parameters;
     }
 
