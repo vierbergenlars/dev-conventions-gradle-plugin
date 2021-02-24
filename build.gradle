@@ -79,6 +79,11 @@ serviceLoader {
     serviceInterface "be.vbgn.gradle.devconventions.conventions.Convention"
     serviceInterface "be.vbgn.gradle.devconventions.conventions.Opinion"
 }
+tasks.named('serviceLoaderBuild').configure {
+    inputs.files(sourceSets.main.output.classesDirs)
+    inputs.property("serviceInterfaces", serviceLoader.serviceInterfaces)
+    outputs.dir(sourceSets.main.output.resourcesDir.toString() + "/META-INF/services")
+}
 classes.finalizedBy("serviceLoaderBuild")
 tasks.withType(Test).configureEach {
     dependsOn("serviceLoaderBuild")
