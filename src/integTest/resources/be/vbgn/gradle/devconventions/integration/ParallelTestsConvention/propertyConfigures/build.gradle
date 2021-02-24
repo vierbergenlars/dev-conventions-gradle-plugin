@@ -1,0 +1,14 @@
+plugins {
+    id "base"
+    id "be.vbgn.dev-conventions"
+    id "java"
+}
+
+task additionalTest(type: Test) {
+    testClassesDirs = files()
+}
+
+afterEvaluate {
+    assert tasks.test.maxParallelForks == 123
+    assert tasks.additionalTest.maxParallelForks == 123
+}
