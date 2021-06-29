@@ -8,8 +8,8 @@ class JacocoSonarqubeConvention implements Convention {
     @Override
     void apply(Project project) {
         project.plugins.withId("jacoco") {
-            project.plugins.withId("org.sonarqube") {
-                project.tasks.named("sonarqube").configure {
+            project.rootProject.plugins.withId("org.sonarqube") {
+                project.rootProject.tasks.named("sonarqube").configure {
                     dependsOn(project.tasks.withType(JacocoReport.class))
                 }
                 project.tasks.withType(JacocoReport.class).configureEach {
