@@ -36,7 +36,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     integTestAdditionalPlugins project(":fake-ci-detect")
     integTestImplementation "junit:junit:4.13.1"
-    integTestImplementation "commons-io:commons-io:2.10.0"
+    integTestImplementation "commons-io:commons-io:2.11.0"
 }
 
 gradlePlugin {
