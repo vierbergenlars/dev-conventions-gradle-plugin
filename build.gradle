@@ -9,7 +9,7 @@ plugins {
     id 'org.sonarqube' version '3.3'
     id "com.gradle.plugin-publish" version "0.18.0"
     id "com.github.harbby.gradle.serviceloader" version "1.1.5"
-    id 'nebula.integtest' version '9.1.6'
+    id 'nebula.integtest' version '9.2.2'
     id 'be.vbgn.dev-conventions.opinion' version '0.5.0'
     id 'be.vbgn.ci-detect' version '0.5.0'
 }
