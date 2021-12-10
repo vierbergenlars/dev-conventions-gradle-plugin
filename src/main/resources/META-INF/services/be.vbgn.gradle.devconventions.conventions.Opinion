@@ -1,0 +1,4 @@
+be.vbgn.gradle.devconventions.conventions.impl.TestsFailFastOnCIOpinion
+be.vbgn.gradle.devconventions.conventions.impl.ReckonOpinion
+be.vbgn.gradle.devconventions.conventions.impl.CheckDependsOnAllTestsOpinion
+be.vbgn.gradle.devconventions.conventions.impl.AutomaticallyPublishToGithubPackagesOpinion

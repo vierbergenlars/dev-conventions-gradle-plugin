@@ -1,0 +1,4 @@
+be.vbgn.gradle.devconventions.conventions.impl.SonarqubeCiDetectConvention
+be.vbgn.gradle.devconventions.conventions.impl.ParallelTestsConvention
+be.vbgn.gradle.devconventions.conventions.impl.JacocoSonarqubeConvention
+be.vbgn.gradle.devconventions.conventions.impl.AllTestsWithCoverageConvention
