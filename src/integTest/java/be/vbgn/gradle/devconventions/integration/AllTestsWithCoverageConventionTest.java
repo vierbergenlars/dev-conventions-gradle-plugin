@@ -13,6 +13,14 @@ public class AllTestsWithCoverageConventionTest extends AbstractIntegrationTest 
     }
 
     @Test
+    public void conventionConfiguresJacocoWithJavaLibrary() throws IOException {
+        createGradleRunner(
+                integrationTests.resolve("AllTestsWithCoverageConvention/conventionConfiguresJacocoWithJavaLibrary"))
+                .withArguments("jacocoTestReport", "jacocoIntegrationTestReport")
+                .build();
+    }
+
+    @Test
     public void conventionConfiguresJacocoWithoutJava() throws IOException {
         createGradleRunner(
                 integrationTests.resolve("AllTestsWithCoverageConvention/conventionConfiguresJacocoWithoutJava"))
