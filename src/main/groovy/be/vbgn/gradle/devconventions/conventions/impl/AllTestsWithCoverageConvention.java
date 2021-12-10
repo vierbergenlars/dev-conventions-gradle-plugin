@@ -2,6 +2,7 @@ package be.vbgn.gradle.devconventions.conventions.impl;
 
 import be.vbgn.gradle.devconventions.conventions.Convention;
 import org.gradle.api.Project;
+import org.gradle.api.plugins.JavaBasePlugin;
 import org.gradle.api.tasks.SourceSet;
 import org.gradle.api.tasks.SourceSetContainer;
 import org.gradle.api.tasks.TaskCollection;
@@ -21,7 +22,7 @@ public class AllTestsWithCoverageConvention implements Convention {
 
             testTasks.all(testTask -> {
                 // Do not configure test task with jacoco, as that is already done by the jacoco plugin itself
-                if (project.getPlugins().hasPlugin("java") && testTask.getName().equals("test")) {
+                if (project.getPlugins().hasPlugin(JavaBasePlugin.class) && testTask.getName().equals("test")) {
                     return;
                 }
 
