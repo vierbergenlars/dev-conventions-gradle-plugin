@@ -1,6 +1,6 @@
 plugins {
     id "lifecycle-base"
-    id "org.ajoberstar.reckon" version "0.13.0"
+    id "org.ajoberstar.reckon" version "0.13.2"
     id "be.vbgn.dev-conventions.opinion"
 }
 
